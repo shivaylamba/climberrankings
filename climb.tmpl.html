@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- TODO --><link rel="icon" href="https://rvamag.com/wp-content/themes/genesis-bfg/build/images/favicons/favicon.ico?v=1.1">
+  <link rel="canonical" href="{{AbsoluteRootUrl}}/{{CanonicalPath}}">
+  <title>Climber Rankings - {{.Area}} - {{.Name}}</title>
+  <style>
+    body {
+      font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    }
+    h1 {
+      text-transform: uppercase;
+    }
+    header {
+      text-align: center;
+    }
+    h1 {
+      font-weight: 900;
+      margin-bottom: 0.33em;
+    }
+    #container {
+      padding-top: 0.5em;
+      margin: 0px auto;
+      max-width: 1200px;
+    }
+    #data {
+      margin: 0px auto;
+      border-collapse: collapse;
+      text-align: left;
+      min-width: 70%;
+      border-spacing: 0px;
+      line-height: 1.15em;
+    }
+    .score, .date, .time, .rank {
+     text-align: right;
+    }
+    td, th {
+      padding: 0.33em;
+    }
+    th {
+      border-bottom: 1px solid black;
+    }
+    td {
+      border-top: 1px solid #CDCDCD;
+    }
+    td.score {
+      background-color: #F0F0F0;
+    }
+    #main-nav, #page-nav {
+      padding-bottom: 0.5em;
+    }
+    a, a:hover, a:visited, a:focus, a:active  {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Mobile - Small */
+    table { font-size: 10px; }
+    h1 { font-size: 24px; }
+    #main-nav { font-size: 14px; }
+    #page-nav { font-size: 12px; }
+    /* Mobile - Medium */
+    @media(min-width: 375px) {
+      table { font-size: 12px; }
+      h1 { font-size: 32px; }
+      #main-nav { font-size: 16px; }
+      #page-nav { font-size: 13px; }
+    }
+    /* Mobile - Large */
+    @media(min-width: 425px) {
+      table { font-size: 13px; }
+      h1 { font-size: 36px; }
+      #main-nav { font-size: 18px; }
+      #page-nav { font-size: 13px; }
+    }
+    /* Tablet */
+    @media(min-width: 768px) {
+      table { font-size: 15px; }
+      h1 { font-size: 40px; }
+      #main-nav { font-size: 20px; }
+      #page-nav { font-size: 15px; }
+    }
+    /* Laptop */
+    @media(min-width: 1024px) {
+      table { font-size: 16px; }
+      h1 { font-size: 44px; }
+      #main-nav { font-size: 22px; }
+      #page-nav { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <header>
+      <h1>{{.Area}}<br />Climber Rankings</h1>
+      <nav id="main-nav">
+        <b><a id="overall" href="/">Overall</a></b> /
+        <a id="climbs" href="/climbs">Climbs</a>
+      </nav>
+      <div id="climb" style="margin-bottom: 1.33em;">
+      <hr style="max-width: 70%;" />
+      <h2 style="margin-bottom: 0.1em; font-size: 36px;">{{.Name}}</h2>
+      <span id="location">{{.Location}}</span>
+      <br />
+      <span id="distance">{{.Distance}}</span>
+      -
+      <span id="grade">{{.Grade}}</span>
+    </div>
+      <nav id="page-nav">
+        {{if .Yearly }}
+        <a id="all" href="/top">All</a> /
+        <b><a id="year" href="/top-2017">Year</a></b>
+        {{else}}
+        <b><a id="all" href="/top">All</a></b> /
+        <a id="year" href="/top-2017">Year</a>
+        {{end}}
+        -
+        {{if .Male}}
+        <b><a id="male" href="/male">Male</a></b> /
+        <a id="female" href="/female">Female</a>
+        {{else}}
+        <a id="male" href="/male">Male</a> /
+        <b><a id="female" href="/female">Female</a></b>
+        {{end}}
+      </nav>
+    </header>
+    <div id='container'>
+      <table id='data'>
+        <thead>
+          <tr>
+            <th class="rank">Rank</th>
+            <th class="name">Name</th>
+            <th class="date">Date</th>
+            <th class="time">Time</th>
+            <th class="score">Score</th>
+          </tr>
+        </thead>
+        <tbody>
+        {{range .Leaderboard}}
+         <tr>
+            <td class="rank">{.Rank}</td>
+            <td class="name"><a href="/riders/{{.RiderId}}">{{.RiderName}</a></td>
+            <td class="date"><a href="{{.EffortUrl}}" target="_blank">{{.EffortDate}}</a></td>
+            <td class="time">{{.EffortDuration}</td>
+            <td class="score">{{.Score}}</td>
+          </tr>
+        {{end}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

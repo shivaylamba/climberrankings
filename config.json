@@ -1,0 +1,146 @@
+{
+  "name": "Bay Area",
+  "climbs":
+		[
+			{
+				"name": "Old La Honda",
+				"aliases": ["OLH"],
+				"segment_id": 8109834
+			},
+			{
+				"name": "Kings Mountain",
+				"aliases": ["Kings"],
+				"segment_id": 611413
+			},
+			{
+				"name": "Montebello",
+				"segment_id": 627158
+			},
+			{
+				"name": "Highway 9",
+				"aliases": ["Hwy 9"],
+				"segment_id": 6544581
+			},
+			{
+				"name": "Tunitas Creek",
+				"aliases": ["Tunitas"],
+				"segment_id": 226705
+			},
+			{
+				"name": "Col du Pantoll",
+				"aliases": ["CdP"],
+				"segment_id": 626859
+			},
+			{
+				"name": "Bolinas/Fairfax",
+				"aliases": ["BoFax"],
+				"segment_id": 1707949
+			},
+			{
+				"name": "Mt. Diablo (South)",
+				"aliases": ["Mount Diablo (South)", "Diablo (South)", "Diablo"],
+				"segment_id": 609257
+			},
+			{
+				"name": "West Alpine",
+				"aliases": ["W Alpine"],
+				"segment_id": 4649440
+			},
+			{
+				"name": "Palomares",
+				"segment_id": 809073
+			},
+			{
+				"name": "Page Mill",
+				"aliases": ["PM"],
+				"segment_id": 794318
+			},
+			{
+				"name": "Mt. Diablo (North)",
+				"aliases": ["Mount Diablo (North)", "Diablo (North)"],
+				"segment_id": 745209
+			},
+			{
+				"name": "Patterson Pass",
+				"aliases": ["Patterson"],
+				"segment_id": 3983
+			},
+			{
+				"name": "Mt. Hamilton",
+				"aliases": ["Mount Hamilton", "Hamilton"],
+				"segment_id": 6144714
+			},
+			{
+				"name": "Sierra Road",
+				"aliases": ["Sierra", "Sierra Rd"],
+				"segment_id": 789267
+			},
+			{
+				"name": "Mt. Charlie",
+				"aliases": ["Mountain Charlie", "Mount Charlie"],
+				"segment_id": 646647
+			},
+			{
+				"name": "Morgan Territory",
+				"segment_id": 1475
+			},
+			{
+				"name": "San Bruno",
+				"segment_id": 378701
+			},
+			{
+				"name": "Henry Coe",
+				"aliases": ["Coe"],
+				"segment_id": 580717
+			},
+			{
+				"name": "Bonny Doon",
+				"segment_id": 115953
+			},
+			{
+				"name": "Quimby",
+				"aliases": ["Quimby Road", "Quimby Rd"],
+				"segment_id": 120709
+			},
+			{
+				"name": "Montevina",
+				"segment_id": 299849
+			},
+			{
+				"name": "Calaveras/Felter",
+				"aliases": ["Calaveras"],
+				"segment_id": 617591
+			},
+			{
+				"name": "Felton Empire",
+				"segment_id": 648888
+			},
+			{
+				"name": "Jamison Creek",
+				"aliases": ["Jamison"],
+				"segment_id": 8574858
+			},
+			{
+				"name": "Soda Springs",
+				"segment_id": 2719563
+			},
+			{
+				"name": "Black Road",
+				"aliases": ["Black Rd", "Black"],
+				"segment_id": 268865
+			},
+			{
+				"name": "Hicks / Mt. Umunhum",
+				"aliases": ["Mount Umunhum", "Mt Umunhum"],
+				"segment_id": 611999
+			},
+			{
+				"name": "Bohlman",
+				"segment_id": 384773
+			},
+			{
+				"name": "Alba",
+				"segment_id": 326187
+			}
+		]
+}
