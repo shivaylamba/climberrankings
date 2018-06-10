@@ -1,0 +1,14 @@
+{{ define "page-nav" }}
+<nav id="page-nav">
+	<a id="all" {{ if not .Yearly }} class="select" {{ end }} href="{{ .AllPath }}">All</a> /
+	<a id="year" {{ if .Yearly }} class="select" {{ end }} href="{{ .YearPath }}">Year</a>
+	-
+	<a id="male" {{ if not .Female }} class="select" {{ end }} href="{{ .MalePath }}">Male</a> /
+	<a id="female" {{ if .Female }} class="select" {{ end }} href="{{ .FemalePath }}">Female</a>
+	{{ if .IncludeRides	}}
+	  -
+		<a id="riders" {{ if not .Rides }} class="select" {{ end }} href="{{ .RidersPath }}">Riders</a> /
+		<a id="rides" {{ if .Rides }} class="select" {{ end }} href="{{ .RidesPath }}">Rides</a>
+	{{ end }}
+</nav>
+{{ end }}

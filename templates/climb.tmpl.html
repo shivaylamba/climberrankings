@@ -1,0 +1,45 @@
+{{ define "content" }}
+<div id="content">
+  <header>
+    <h1>{{ .Title }}<br />Climber Rankings</h1>
+    <nav id="main-nav">
+      <a id="overall" href="/">Overall</a> /
+      <a id="climbs" href="/climbs">Climbs</a>
+    </nav>
+    <div id="climb">
+      <hr />
+      <h2>{{ .Name }}</h2>
+      <span id="location">{{ .Location }}</span>
+      <br />
+      <span id="distance">{{ .Distance }}</span>
+      -
+      <span id="grade">{{ .Grade }}</span>
+    </div>
+    {{ template "page-nav" }}
+  </header>
+  <div id='container'>
+    <table id='data'>
+      <thead>
+        <tr>
+          <th class="rank">Rank</th>
+          <th class="name">Name</th>
+          <th class="date">Date</th>
+          <th class="time">Time</th>
+          <th class="score">Score</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{ range .Leaderboard }}
+       <tr>
+          <td class="rank">{{ .Rank }}</td>
+          <td class="name"><a href="/riders/{{ .RiderId }}">{{ .RiderName }}</a></td>
+          <td class="date"><a href="{{.EffortUrl}}" target="_blank">{{ .EffortDate }}</a></td>
+          <td class="time">{{ .EffortDuration }}</td>
+          <td class="score">{{ .Score }}</td>
+        </tr>
+      {{ end }}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{ end }}

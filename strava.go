@@ -27,8 +27,8 @@ type Segment struct {
 	ElevationLow       float64 `json:"elevation_low"`
 }
 
-// Effort .
-type Effort struct {
+// LeaderboardEntry .
+type LeaderboardEntry struct {
 	ID       int64   `json:"id"`
 	Segment  Segment `json:"segment"`
 	Athlete  Athlete `json:"athlete"`

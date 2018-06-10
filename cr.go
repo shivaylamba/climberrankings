@@ -6,7 +6,7 @@ import (
 	"flag"
 	"fmt"
 	"html/template"
-	"ioutil"
+	"io/ioutil"
 	"os"
 	"regexp"
 	"sort"
@@ -15,6 +15,19 @@ import (
 
 	"github.com/strava/go.strava"
 )
+
+
+
+
+type ClimbData struct {
+	Title string
+	Name string
+	Location string
+	Distance string
+	Grade string
+}
+
+
 
 type Climb struct {
 	Name string `json:"name"`
@@ -35,24 +48,6 @@ type Data {
 	Area string // Bay Area
 	Yearly bool
 	Male bool
-}
-
-type ClimbData {
-	Data
-	Name string // Old La Honda
-	Location string // Woodside, California
-	Distance string // 4.88km
-	Grade string // 7.91%
-	Leaderboard []LeaderboardEntry
-}
-
-type LeaderboardEntry {
-	Rank int // 2
-	RiderId int // 648204
-	RiderName string // Alex S
-	EffortUrl string // https://www.strava.com/segment_efforts/2920055998
-	EffortDate string // 1 Jan 2017
-	Score int // 990
 }
 
 const MAX_PER_PAGE = 200
@@ -226,7 +221,7 @@ func slugify(gender strava.Gender, yearly bool) string {
 func slugifyAliases(climb Climb) []string {
 	var slugs []string
 	for _, alias := range aliases {
-		slugs = append(slugs, slugify(alias)
+		slugs = append(slugs, slugify(alias))
 	}
 	return slugs
 }
