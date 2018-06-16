@@ -1,0 +1,105 @@
+BOOTSTRAP: if no leaderboard info, do a freshness (one page fetch) for all the (segment,type) leaderbaords to figure out entry counts!
+=> this means without the freshness query first we can't figure out entry counts... == just need to go on time then!
+-> optimizing with bin packing is actually too much work, and adds additional complication, we should always just go by last fetched time regardless! (add a TODO for binpacking)
+
+
+
+- provide ability fetch a single page
+   - expose addToLeaderboard so can build up leaderboard past the page?
+- parse num entries from leaderboard to return how many queries required
+	- parse both num entries from HTML (-/16) as well as num pages (< 1 2 3... 6 >)?
+- add request count to client!
+
+BIN PACKING
+- use 'fullyRefreshedAt' order by update and ID for 120 leaderboards
+1) query the database first to get updated order not ruined by freshness fetch
+2) perform freshness fetch, get num entries = num requests required
+  - freshness fetch may be enough to satisfy some leaderbaords completely, remove them
+
+- allow to fetch one leaderboard at a time OR do refresh for all 120 and then fetch rest gradually (hybrid approach!)
+
+
+
+########
+
+
+segment table: id/name/location/distance/avg_grade/elevation_low/elevation_high/total_elevation_gain/last_updated
+athlete table: url (= id)/name/gender
+leaderboard_table:
+
+i) table per leaderboard with index:
+= computing overall is more expensive (join all 30 tables?)
+
+
+ii) one table with all leaderboard entries
+
+
+type: { male_overall, female_overall, male_yearly, female_yearly }
+leaderboard_id = (segment_id, type)
+updated_at = autoset
+
+(leaderboard_id, type, segment_id, score, updated_at) athlete_url, effort_id, start_date, elapsed_timed
+
+
+#######
+
+- group leaderboards by id, type and compute MIN(updated_at) = most stale entry in each leaderboard
+
+leaderboard_id, type, MIN_updated_at, num_entries
+
+
+
+
+EXAMPLE:
+
+1=(0, MO, 0, 4000)
+2=(0, FO, 0, 2000)
+3=(0, MY, 0, 400)
+4=(0, FY, 0, 200)
+5=(1, MO, 0, 3000)
+6=(1, FO, 0, 1000)
+7=(1, MY, 0, 300)
+8=(1, FY, 0, 100)
+
+all same time:
+MAX_PER_PAGE=100 num_reqs=41 freshness=FALSE=> 1,8
+MAX_PER_PAGE=100 num_reqs=41 freshness=TRUE=> error (41-8 not >= 40)
+
+TODO examples with different timestamps ie different order
+
+#######
+
+type Type int64
+type Types = struct {
+	MaleOverall Type
+	FemaleOverall Type
+	MaleYearly Type
+	FemaleYearly Type
+}{0,1,2,3}
+// TODO const? iota?
+
+type LeaderboardStat = struct {
+	SegmentID int64
+	Type Type
+	MinUpdatedAt time.Time
+	EntriesCount int64
+}
+
+type LeaderboardStats []*LeaderboardStat
+
+// 1) get LeaderboardStats from database
+// 2) sort leaderboard stats further based on numRequests and numEntries in each leaderboard
+// 3) i) optionally perform freshness requests (in next function!, bool just signals INTENT)
+//    ii) fetch at least one full leaderboard, either from page 2 if freshness request or skip ahead a leaderboard if freshness already brought it up to date
+// ASSERT AT LEAST OLDEST LEADERBOARD FULLY UP TO DATE AFTER 3ii
+// must have enough requests to satisfy oldest leaderboard (even if largest)
+
+func sortLeaderboardStats(stats LeaderboardStats, numRequests int64, freshness bool) (LeaderboardStats, error){
+
+	// sorted = sort by entries_count
+
+	// start filling return value from input until out of room, then take from
+	// sorted.
+
+
+}
